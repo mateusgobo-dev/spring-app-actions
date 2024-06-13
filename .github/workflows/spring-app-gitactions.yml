@@ -1,4 +1,4 @@
-name: cst-nfse-services-bom
+name: spring-app-actions
 on: push
 jobs:
   package:
@@ -31,6 +31,5 @@ jobs:
         with:
           java-version: 17
           maven-version: ${{matrix.maven}}
-      - run: |
-          cd nfse-portoalegre
-          mvn surefire:test failsafe:integration-test -f pom.xml
+      - run: |        
+          mvn surefire:test -f pom.xml
