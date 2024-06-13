@@ -1,0 +1,3 @@
+/home/mateusgobo/mgobo-repo/devops/github-actions/spring-app-gitactions/src/test/java/br/spring/git/actions/SpringAppGitactionsApplicationTests.java
+/home/mateusgobo/mgobo-repo/devops/github-actions/spring-app-gitactions/src/test/java/br/spring/git/actions/api/repository/BaseTest.java
+/home/mateusgobo/mgobo-repo/devops/github-actions/spring-app-gitactions/src/test/java/br/spring/git/actions/api/repository/UsuarioServiceTest.java
