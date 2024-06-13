@@ -32,4 +32,4 @@ jobs:
           java-version: 17
           maven-version: ${{matrix.maven}}
       - run: |        
-          mvn surefire:test -f pom.xml
+          mvn test -f pom.xml

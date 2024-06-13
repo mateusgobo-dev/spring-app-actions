@@ -45,12 +45,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>1.5.5.Final</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok-mapstruct-binding</artifactId>
             <version>0.2.0</version>
@@ -137,7 +131,7 @@
                         <exclude>**/restassured/**</exclude>
                     </excludes>
                     <environmentVariables>
-                        <spring_profiles_active>test</spring_profiles_active>
+                        <spring_active_profiles>test</spring_active_profiles>
                     </environmentVariables>
                 </configuration>
             </plugin>
