@@ -6,17 +6,17 @@ jobs:
     strategy:
       matrix:
         maven: [ '3.8.8', '3.9.6' ]
-      steps:
-        - name: Get code
-          uses: actions/checkout@v4
-        - name: Set up Maven
-          uses: s4u/setup-maven-action@v1.13.0
-          with:
-            java-version: 17
-            maven-version: ${{matrix.maven}}
-        - name: Empacotando
-          run: |
-            mvn clean:clean package install:install -f pom.xml
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1.13.0
+        with:
+          java-version: 17
+          maven-version: ${{matrix.maven}}
+      - name: Empacotando
+        run: |
+          mvn clean:clean package install:install -f pom.xml
   test:
     needs: package
     runs-on: ubuntu-latest
@@ -32,4 +32,4 @@ jobs:
           java-version: 17
           maven-version: ${{matrix.maven}}
       - run: |        
-          mvn test -f pom.xml
+          mvn surefire:test -f pom.xml
