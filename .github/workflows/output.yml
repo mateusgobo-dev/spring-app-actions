@@ -1,0 +1,8 @@
+name: spring-app-gitactions
+on: push
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github Context
+        run: echo "{{ toJSON(github) }}"
