@@ -27,25 +27,12 @@ class UsuarioServiceTest extends BaseTest {
     private UsuarioRepository usuarioRepository;
     private UsuarioService usuarioService;
     private UsuarioDao usuarioDao;
-    private static final String messageNulo = "%s nao pode ser nulo";
-    private static final String messageVazio = "%s tem preenchimento obrigatorio";
-
-    private final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    private final Validator validator = factory.getValidator();
 
     @BeforeEach
     void beforeEach() {
         openMocks(this);
         this.usuarioDao = new UsuarioDao(this.usuarioRepository);
         this.usuarioService = new UsuarioService(this.usuarioDao);
-    }
-
-    private boolean validarConteudoUsuario(Usuario usuario) throws UsuarioException {
-        Set<ConstraintViolation<Usuario>> violations = validator.validate(usuario);
-        if (!violations.isEmpty()) {
-            throw new UsuarioException(violations.stream().iterator().next().getMessage());
-        }
-        return true;
     }
 
     private void salvarUsuario(Usuario usuario) throws UsuarioException {

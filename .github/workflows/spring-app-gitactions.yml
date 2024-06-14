@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        maven: [ '3.8.8', '3.9.6' ]
+        maven: ['3.9.6']
     steps:
       - name: Get code
         uses: actions/checkout@v4
@@ -14,22 +14,31 @@ jobs:
         with:
           java-version: 17
           maven-version: ${{matrix.maven}}
+      - name: Output event data
+        run: echo ""${{ toJSON(github.event) }}
       - name: Empacotando
         run: |
+          echo "Empacotando projeto..."
           mvn clean:clean package install:install -f pom.xml
-  test:
-    needs: package
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        maven: [ '3.8.8', '3.9.6' ]
-    steps:
-      - name: Get code
-        uses: actions/checkout@v4
-      - name: Set up Maven
-        uses: s4u/setup-maven-action@v1.13.0
-        with:
-          java-version: 17
-          maven-version: ${{matrix.maven}}
-      - run: |        
+      - name: Testando
+        run: |          
+          echo "Testando código..."
           mvn test -f pom.xml
+      - name: Realizando deploy
+        run: echo "Deploying..."
+#  test:
+#    needs: package
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        maven: ['3.9.6']
+#    steps:
+#      - name: Get code
+#        uses: actions/checkout@v4
+#      - name: Set up Maven
+#        uses: s4u/setup-maven-action@v1.13.0
+#        with:
+#          java-version: 17
+#          maven-version: ${{matrix.maven}}
+#      - run: |
+#          mvn test -f pom.xml
