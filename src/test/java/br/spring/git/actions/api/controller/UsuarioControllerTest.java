@@ -2,7 +2,6 @@ package br.spring.git.actions.api.controller;
 
 import br.spring.git.actions.api.domain.Usuario;
 import br.spring.git.actions.api.exceptions.UsuarioException;
-import br.spring.git.actions.api.functions.MappersFn;
 import br.spring.git.actions.api.repository.BaseTest;
 import br.spring.git.actions.api.repository.UsuarioDao;
 import br.spring.git.actions.api.repository.UsuarioRepository;
@@ -11,14 +10,13 @@ import br.spring.git.actions.web.controllers.UsuarioController;
 import br.spring.git.actions.web.dto.UsuarioDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
-import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 
-import static br.spring.git.actions.api.functions.MappersFn.*;
+import static br.spring.git.actions.api.functions.MappersFn.usuarioSerialize;
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -68,7 +66,7 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(2)
     @Test
-    public void salvarUsuarioTest_Success() throws UsuarioException{
+    public void salvarUsuarioTest_Success() throws UsuarioException {
         UsuarioDto usuarioDto = this.usuarioDto();
         ResponseEntity response = this.salvarRegistro(usuarioDto);
 
@@ -77,8 +75,8 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(3)
     @Test
-    public void salvarUsuarioTest_Error_Nome() throws Exception {
-        Assertions.assertThrows(Exception.class, () -> {
+    public void salvarUsuarioTest_Error_Nome() {
+        Assertions.assertThrows(UsuarioException.class, () -> {
             UsuarioDto usuarioDto = this.usuarioDto();
             usuarioDto.setNome("");
 
@@ -89,8 +87,8 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(4)
     @Test
-    public void salvarUsuarioTest_ErrorNulo_Nome() throws Exception {
-        Assertions.assertThrows(Exception.class, () -> {
+    public void salvarUsuarioTest_ErrorNulo_Nome() {
+        Assertions.assertThrows(UsuarioException.class, () -> {
             UsuarioDto usuarioDto = this.usuarioDto();
             usuarioDto.setNome(null);
 
@@ -101,8 +99,8 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(5)
     @Test
-    public void salvarUsuarioTest_Error_Email() throws Exception {
-        Assertions.assertThrows(Exception.class, () -> {
+    public void salvarUsuarioTest_Error_Email() {
+        Assertions.assertThrows(UsuarioException.class, () -> {
             UsuarioDto usuarioDto = this.usuarioDto();
             usuarioDto.setEmail("");
 
@@ -113,8 +111,8 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(6)
     @Test
-    public void salvarUsuarioTest_ErrorNulo_Email() throws Exception {
-        Assertions.assertThrows(Exception.class, () -> {
+    public void salvarUsuarioTest_ErrorNulo_Email() {
+        Assertions.assertThrows(UsuarioException.class, () -> {
             UsuarioDto usuarioDto = this.usuarioDto();
             usuarioDto.setEmail(null);
 
@@ -125,8 +123,8 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(7)
     @Test
-    public void salvarUsuarioTest_Error_Senha() throws Exception {
-        Assertions.assertThrows(Exception.class, () -> {
+    public void salvarUsuarioTest_Error_Senha() {
+        Assertions.assertThrows(UsuarioException.class, () -> {
             UsuarioDto usuarioDto = this.usuarioDto();
             usuarioDto.setSenha("");
 
@@ -137,8 +135,8 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(8)
     @Test
-    public void salvarUsuarioTest_ErrorNulo_Senha() throws Exception {
-        Assertions.assertThrows(Exception.class, () -> {
+    public void salvarUsuarioTest_ErrorNulo_Senha() {
+        Assertions.assertThrows(UsuarioException.class, () -> {
             UsuarioDto usuarioDto = this.usuarioDto();
             usuarioDto.setSenha(null);
 
@@ -149,7 +147,7 @@ public class UsuarioControllerTest extends BaseTest {
 
     @Order(9)
     @Test
-    public void deletarUsuarioTest_Success() throws Exception {
+    public void deletarUsuarioTest_Success() throws UsuarioException {
         Usuario usuario = Usuario.builder().build();
         usuario.setId(1L);
 

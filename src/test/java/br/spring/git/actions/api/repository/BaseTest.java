@@ -21,6 +21,7 @@ public class BaseTest {
 
     protected final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     protected final Validator validator = factory.getValidator();
+    protected final Validator validatorDto = factory.getValidator();
 
     protected Usuario usuario() {
         return Usuario.builder()
@@ -34,7 +35,7 @@ public class BaseTest {
     }
 
     protected boolean validarConteudoUsuario(Usuario usuario) throws UsuarioException {
-        Set<ConstraintViolation<Usuario>> violations = validator.validate(usuario, Usuario.class);
+        Set<ConstraintViolation<Usuario>> violations = validator.validate(usuario);
         if (!violations.isEmpty()) {
             throw new UsuarioException(violations.stream().iterator().next().getMessage());
         }
@@ -42,7 +43,7 @@ public class BaseTest {
     }
 
     protected boolean validarConteudoUsuarioDto(UsuarioDto usuarioDto) throws UsuarioException {
-        Set<ConstraintViolation<UsuarioDto>> violations = validator.validate(usuarioDto);
+        Set<ConstraintViolation<UsuarioDto>> violations = validatorDto.validate(usuarioDto);
         if (!violations.isEmpty()) {
             throw new UsuarioException(violations.stream().iterator().next().getMessage());
         }
