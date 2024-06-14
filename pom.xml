@@ -125,6 +125,7 @@
                     <testSourceDirectory>src/test/java</testSourceDirectory>
                     <includes>
                         <include>**/repository/**</include>
+                        <include>**/controller/**</include>
                     </includes>
                     <excludes>
                         <exclude>**/mockmvc/**</exclude>
