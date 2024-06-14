@@ -15,7 +15,7 @@ jobs:
           java-version: 17
           maven-version: ${{matrix.maven}}
       - name: Output event data
-        run: echo ""${{ toJSON(github.event) }}
+        run: echo "${{ toJSON(github.event) }}"
       - name: Empacotando
         run: |
           echo "Empacotando projeto..."
